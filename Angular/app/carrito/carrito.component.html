@@ -24,7 +24,7 @@
                             <th scope="col" width="25">Cantidad</th>
                             <th scope="col">Producto</th>
                             <th scope="col">Precio</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">Subtotal</th>
                             <th scope="col">Acciones</th>
                           </tr>
                         </thead>
@@ -37,8 +37,15 @@
                             <td><button type="button" class="btn btn-warning" (click)="quitarProducto(producto[0])">Quitar</button></td>
                           </tr>
                         </tbody>
-                      </table>   
+                      </table> 
+                      <br>
                       <hr>
+                      <div class="form-group text-center">
+                        <small>Su total es:</small>
+                        <br>
+                        <h1><b>$. {{servicio.total}}</b></h1>
+                      </div>  
+                      
                         <div class="form-group text-center">
                           <button type="button" class="btn btn-danger" (click)="vaciarCarrito()">Vaciar Carrito</button>&nbsp;
                           <button type="button" class="btn btn-success" (click)="realizarCompra()">Realizar compra</button>

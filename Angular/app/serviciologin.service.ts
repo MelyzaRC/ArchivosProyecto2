@@ -732,11 +732,18 @@ export class ServiciologinService {
   }
 
   public carrito: any[];
+  public total: number = 0;
   public verCarrito(usuario: any){
+    this.total = 0;
     this.http.get(`${this.API_URI}vercarrito?&usuario=${usuario}`)
     .subscribe((resp: any[]) => {
       console.log(resp);
       this.carrito = resp;
+      if(this.carrito.length > 0){
+        for(var i = 0; i < this.carrito.length; i++){
+          this.total = this.total + (this.carrito[i][3]*this.carrito[i][6]);
+        }
+      }
     });
     this.actual = this.getCurrentUsert();
     this.guardarBitacora(`Visualizacion de carrito`, this.actual[2]);
@@ -751,6 +758,7 @@ export class ServiciologinService {
         this.notificacionError("Error vaciando el carrito", "Error");
       }else{
         this.notificacionSuccess("Carrito vaciado", "Ok");
+        this.total = 0;
         location.reload();
       }
     });
@@ -787,7 +795,49 @@ export class ServiciologinService {
         if(totalCarrito > this.actual[7]){
           this.notificacionError("No posee creditos suficientes", "Error");
         }else{
+          this.notificacionSuccess("Compra exitosa", "Ok");
           this.cambiarCreditosComprador(this.actual[0], this.actual[7] - totalCarrito);
+          var grantotal = 0;
+          var textoCorreo = `<center>
+                                <img src="https://image.flaticon.com/icons/png/512/487/487913.png"  alt="Logo GTSales MarketPlace" width="100px">
+                                <p>Estimado(a):</p>
+                                <h1>
+                                  <font color="#0B5345"><b>${this.actual[1]}</b></h1></font>
+                                <br>
+                                Su compra se ha realizado exitosamente!.
+                                <br>
+                                <br>
+                                <b>Detalle de Factura:</b>
+                                <br>
+                                <br>
+                                <table border="0" width="75%">
+                                <tr>
+                                    <th bgcolor="#D7BDE2">Codigo</th>
+                                    <th bgcolor="#D7BDE2">Cantidad</th>
+                                    <th bgcolor="#D7BDE2">Nombre</th>
+                                    <th bgcolor="#D7BDE2">Precio Unitario</th>
+                                    <th bgcolor="#D7BDE2">Total</th>
+                                  </tr>`;
+          for(var i = 0; i < this.carrito.length; i++){
+            grantotal = grantotal + this.carrito[i][6]*this.carrito[i][3];
+            textoCorreo = textoCorreo + '\n' +  ` <tr>
+                                                    <td><center>${this.carrito[i][1]}</center></td>
+                                                    <td><center>${this.carrito[i][3]}</center></td>
+                                                    <td><center>${this.carrito[i][5]}</center></td>
+                                                    <td><center>$.${this.carrito[i][6]}</center></td>
+                                                    <td><center>$.${this.carrito[i][6] * this.carrito[i][3]}</center></td>
+                                                  </tr>`;
+          }
+          textoCorreo = textoCorreo + ` </table>
+                                        <br>
+                                        <br>
+                                        Total de su compra:
+                                        <br>
+                                        <h1><b>$.${grantotal}</b></h1>
+                                        <br>
+                                        <hr>. 
+                                    </center>`;               
+          this.enviarCorreo(this.actual[2], "Factura", textoCorreo);                          
           this.actual[7] = this.actual[7] - totalCarrito;
           this.setUser(this.actual);
           this.crearFactura(this.actual[0]);
@@ -842,10 +892,10 @@ export class ServiciologinService {
                                   </tr>
                                   <tr>
                                     <td><center>${this.carrito[i][1]}</center></td>
-                                    <td><center>${this.carrito[i][7]}</center></td>
+                                    <td><center>${this.carrito[i][4]}</center></td>
                                     <td><center>${this.carrito[i][5]}</center></td>
-                                    <td><center>$.${this.carrito[i][6]}</center></td>
-                                    <td><center>$.${this.carrito[i][6] * this.carrito[i][7]}</center></td>
+                                    <td><center>$.${this.carrito[i][3]}</center></td>
+                                    <td><center>$.${this.carrito[i][6] * this.carrito[i][3]}</center></td>
                                   </tr>
                                 </table>
                                 <br>
@@ -865,7 +915,7 @@ export class ServiciologinService {
       if(resp == 0){
         this.notificacionError("error actualizando creditos del comprador", "error");
       }else{
-        this.notificacionSuccess("Creditos del comprador actualizados", "Ok");
+        //this.notificacionSuccess("Creditos del comprador actualizados", "Ok");
       }
     });
   }
@@ -877,7 +927,7 @@ export class ServiciologinService {
       if(resp == 0){
         this.notificacionError("creditos agregados NO", "Error");
       }else{
-        this.notificacionSuccess("creditos agregados al vendedor", "Ok");
+        //this.notificacionSuccess("creditos agregados al vendedor", "Ok");
       }
     });
   }
@@ -889,7 +939,7 @@ export class ServiciologinService {
       if(resp == 0){
         this.notificacionError("no insertado a detalle", "Error");
       }else{
-        this.notificacionSuccess("Insertado a detalle", "Ok");
+        //this.notificacionSuccess("Insertado a detalle", "Ok");
       }
     });
   }
@@ -901,7 +951,7 @@ export class ServiciologinService {
       if(resp == 0){
         this.notificacionError("carrito no cambiado", "Error");
       }else{
-        this.notificacionSuccess("carrito cambiado", "Ok");
+        //this.notificacionSuccess("carrito cambiado", "Ok");
       }
     });
   }

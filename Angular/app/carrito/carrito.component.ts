@@ -20,7 +20,9 @@ export class CarritoComponent implements OnInit {
     if(this.usuarioActual == false){
       this.router.navigateByUrl('error');
     }
+    
     this.servicio.verCarrito(this.usuarioActual[0]);
+    
     
   }
   
