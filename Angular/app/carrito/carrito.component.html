@@ -1,0 +1,50 @@
+<hr>
+<nav class="nav nav-pills flex-column flex-sm-row bg-" >
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/perfil']">Perfil</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/productos']">Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/nuevo']">Nuevo Producto</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/misproductos']">Mis Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/mensaje']">Mensajes</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" [routerLink] = "['/carrito']">Carrito</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/logout']">Salir</a>
+  </nav>
+  <hr>
+  <br>
+  <div class="container h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-sm-8 align-self-center">
+            <div class="card shadow">
+                <div class="card-body"> 
+                    <div class="form-group text-center">
+                        <img src="https://www.flaticon.es/svg/static/icons/svg/1656/1656507.svg" class="img-fluid" alt="Responsive image" width="75">
+                    </div>   
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col" width="25">Cantidad</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor='let producto of servicio.carrito'>
+                            <td>{{producto[3]}}</td>
+                            <td>{{producto[5]}}</td>
+                            <td>{{producto[6]}}</td>
+                            <td>{{producto[6]*producto[3]}}</td>
+                            <td><button type="button" class="btn btn-warning" (click)="quitarProducto(producto[0])">Quitar</button></td>
+                          </tr>
+                        </tbody>
+                      </table>   
+                      <hr>
+                        <div class="form-group text-center">
+                            <button type="button" class="btn btn-success" (click)="realizarCompra()">Realizar compra</button>
+                        </div>      
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+

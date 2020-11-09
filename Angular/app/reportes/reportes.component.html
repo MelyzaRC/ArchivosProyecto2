@@ -1,0 +1,305 @@
+<hr>
+<nav class="nav nav-pills flex-column flex-sm-row bg-" >
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/categorias']">Categorias</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/denuncias']">Denuncias</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" [routerLink] = "['/reportes']">Reportes</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/logout']">Salir</a>
+</nav>
+  <hr>
+<br>
+<br>
+<div class="container h-100">
+  <div class="row justify-content-center h-100">
+      <div class="col-sm-5 align-self-center">
+        <div class="form-group text-center">
+          <img src="https://transparencia.tlaquepaque.gob.mx/wp-content/uploads/2016/10/dashboard_icon1.png" class="img-fluid" alt="Responsive image" width="100">
+      </div>
+        
+        <label for="reporte">Seleccionar reporte:</label>
+          <select class="form-control form-control-sm" id="reporte"  [ngModelOptions]="{standalone: true}" [(ngModel)]="REPORTESELECCIONADO">
+            <option  value=1>Bitacora</option>
+            <option  value=2>10+ Vendidos</option>
+            <option  value=3>10+ Me gusta</option>
+            <option  value=4>10+ No me gusta</option>
+            <option  value=5>10+ Creditos de clientes</option>
+            <option  value=6>10+ Clientes que hicieron denuncias</option>
+            <option  value=7>10+ Clientes con publicaciones</option>
+            <option  value=8>10+ Paises con creditos y productos</option>
+        </select>
+        <br>
+        <div class="form-group text-center">
+          <button class="btn btn-success" type="button" (click)="verReporte()">Ver reporte seleccionado</button>
+        </div>
+      </div>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="container h-100">
+  <div class="row justify-content-center h-100">
+      <div class="col-sm-12 align-self-center">
+          <div class="card shadow">
+              <div class="card-body"> 
+
+
+<div *ngIf='REPORTE ==0'>
+  <div class="form-group text-center">
+    Sus reportes se mostraran aqui.
+  </div>
+</div>
+
+<div *ngIf='REPORTE ==1'>
+  <div class="form-group text-center">
+    <h5>Reporte de Bitacora</h5>
+    <hr>
+    <button class="btn btn-warning" type="button" (click)="verBitacoraDESC()">Mas reciente primero</button>
+    &nbsp;
+    <button class="btn btn-info" type="button" (click)="verBitacoraASC()">Mas antiguo primero</button>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Usuario</th>
+        <th scope="col">Accion</th>
+        <th scope="col">Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let bitacora of servicio.respuestaReporte'>
+        <td>{{bitacora[3]}}</td>
+        <td>{{bitacora[1]}}</td>
+        <td>{{bitacora[2]}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+</div>
+
+<div *ngIf='REPORTE ==2'>
+  <div class="form-group text-center">
+    <h5>Top 10 - Productos mas vendidos</h5>
+    <hr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Codigo</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Vendedor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let producto of servicio.productostop'>
+          <td>{{producto[0]}}</td>
+          <td>{{producto[1]}}</td>
+          <td>{{producto[2]}}</td>
+          <td>{{producto[4]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+</div>
+
+<div *ngIf='REPORTE ==3'>
+  <div class="form-group text-center">
+    <h5>Top 10 - Productos con mas Me gusta</h5>
+    <hr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Codigo</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Me gusta</th>
+          <th scope="col">Vendedor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let producto of servicio.productostop'>
+          <td>{{producto[0]}}</td>
+          <td>{{producto[1]}}</td>
+          <td>{{producto[2]}}</td>
+          <td>{{producto[4]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+</div>
+
+<div *ngIf='REPORTE ==4'>
+  <div class="form-group text-center">
+    <h5>Top 10 - Productos con mas No me gusta</h5>
+    <hr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Codigo</th>
+          <th scope="col">Producto</th>
+          <th scope="col">No Me gusta</th>
+          <th scope="col">Vendedor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let producto of servicio.productostop'>
+          <td>{{producto[0]}}</td>
+          <td>{{producto[1]}}</td>
+          <td>{{producto[2]}}</td>
+          <td>{{producto[4]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+</div>
+
+<div *ngIf='REPORTE ==5'>
+
+  <div class="form-group text-center">
+    <h5>Top 10 - Clientes con mas creditos</h5>
+    <hr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Cliente</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Fecha de nacimiento</th>
+          <th scope="col">Creditos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let cliente of servicio.clientestop'>
+          <td>{{cliente[0]}}</td>
+          <td>{{cliente[1]}}</td>
+          <td>{{cliente[2]}}</td>
+          <td>{{cliente[4]}}</td>
+          <td>{{cliente[7]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <br>
+  <div class="form-group text-center">
+    <h5>Top 10 - Clientes con menos creditos</h5>
+    <hr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Cliente</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Fecha de nacimiento</th>
+          <th scope="col">Creditos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let cliente of servicio.clientestop2'>
+          <td>{{cliente[0]}}</td>
+          <td>{{cliente[1]}}</td>
+          <td>{{cliente[2]}}</td>
+          <td>{{cliente[4]}}</td>
+          <td>{{cliente[7]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+</div>
+
+<div *ngIf='REPORTE ==6'>
+  <div class="form-group text-center">
+    <h5>Top 10 - Clientes con mas denuncias realizadas</h5>
+    <hr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Cliente</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Fecha de Nacimiento</th>
+          <th scope="col">Denuncias</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let cliente of servicio.clientesdenuncias'>
+          <td>{{cliente[0]}}</td>
+          <td>{{cliente[1]}}</td>
+          <td>{{cliente[2]}}</td>
+          <td>{{cliente[3]}}</td>
+          <td>{{cliente[4]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <br>
+  <br>
+</div>
+
+<div *ngIf='REPORTE ==7'>
+  <div class="form-group text-center">
+    <h5>Top 10 - Clientes con mas productos publicados</h5>
+    <hr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Cliente</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Fecha de Nacimiento</th>
+          <th scope="col">Productos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let cliente of servicio.clientesproductos'>
+          <td>{{cliente[0]}}</td>
+          <td>{{cliente[1]}}</td>
+          <td>{{cliente[3]}}</td>
+          <td>{{cliente[4]}}</td>
+          <td>{{cliente[2]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <br>
+  <br>
+</div>
+
+
+<div *ngIf='REPORTE ==8'>
+  <div class="form-group text-center">
+    <h5>Top 10 - Paises, creditos y usuarios</h5>
+    <hr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Pais</th>
+          <th scope="col">Creditos</th>
+          <th scope="col">Productos</th>
+          <th scope="col">Usuarios</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let pais of servicio.paisesreporte'>
+          <td>{{pais[4]}}</td>
+          <td>{{pais[1]}}</td>
+          <td>{{pais[2]}}</td>
+          <td>{{pais[3]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <br>
+  <br>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div> 

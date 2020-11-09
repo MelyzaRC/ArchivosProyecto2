@@ -1,0 +1,59 @@
+<br>
+<br>
+<div class="container h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-sm-7 align-self-center">
+            <div class="card shadow">
+                <div class="card-body"> 
+                    <div class="form-group text-center">
+                        <img src="https://image.flaticon.com/icons/png/128/2361/2361749.png" class="img-fluid" alt="Registro de datos">
+                        <br>
+                        <br>
+                        <h4><b>Formulario de Registro</b></h4>
+                        <br>
+                    </div>
+                    <div class="form-container">
+                        <!--Solicitando NOMBRE-->
+                        <label for="nombre">Nombre Completo:</label>
+                        <input type="text" placeholder="Ingrese su nombre completo" class="form-control" id="nombre" [ngModelOptions]="{standalone: true}" [(ngModel)]="NOMBRE">
+                        <br>
+                        <!--Solicitando CORREO-->
+                        <label for="correo">Correo electronico:</label>
+                        <input type="email" placeholder="Ingrese correo electronico" class="form-control" id="correo" [ngModelOptions]="{standalone: true}" [(ngModel)]="CORREO">
+                        <br>
+                        <!--Solicitando CONTRASENA-->
+                        <label for="contrasena1">Contrasena:</label>
+                        <input type="password" placeholder="Ingrese una contrasena" class="form-control" id="contrasena1" [ngModelOptions]="{standalone: true}" [(ngModel)]="PASSWORD">
+                        <br>
+                        <!--Solicitando CONFIRMAR CONTRASENA-->
+                        <label for="contrasena2">Confirmar contrasena:</label>
+                        <input type="password" placeholder="Confirme su contrasena" class="form-control" id="contrasena2" [ngModelOptions]="{standalone: true}" [(ngModel)]="PASSWORD2">
+                        <br>
+                        <!--Solicitando FECHA NACIMIENTO-->
+                        <label for="fecha">Fecha de nacimiento:</label>
+                        <input type="date" placeholder="Ingrese su fecha de nacimiento" class="form-control" id="fecha" [ngModelOptions]="{standalone: true}" [(ngModel)]="FECHA">
+                        <br>
+                        <!--Solicitando PAIS-->
+                        <label for="pais">Pais:</label>
+                        <select class="form-control form-control-sm" id="pais1"  [ngModelOptions]="{standalone: true}" [(ngModel)]="PAIS">
+                            <option *ngFor='let pais of servicio.paises' value={{pais[0]}}>{{pais[1]}}</option>
+                        </select>
+                        <br>
+                        <!--Solicitando FOTO-->
+                        <label for="foto">Foto de perfil:</label>
+                        <image-upload (uploadFinished)="onUploadFinish($event)" id="foto"></image-upload>
+                        <button type="button" class="btn btn-success" (click)="sendImage()">Send</button>
+                        <br>
+                        <br>
+                        <div class="form-group text-center">
+                            <small id="info" class="form-text text-muted">Al pulsar el boton de Registrarse, usted sera parte de <b>GTSales Marketplace</b>.</small>
+                            <br>
+                            <button type="button" class="btn btn-primary btn-block" id="botonregistro" (click)="registrarse()">Registrarse</button>
+                        </div>
+                    </div>      
+                    <br>                
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,33 @@
+<div class="container h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-sm-5 align-self-center">
+            <div class="card shadow">
+                <div class="card-body"> 
+                    <img src="https://productionservices.jumia.co.ke/wp-content/uploads/2018/07/app-marketplace.png" class="img-fluid" alt="Responsive image">
+                    <br>
+                    <br>
+                    <div class="form-container">
+                        <form>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Email:</label>
+                              <input [ngModelOptions]="{standalone: true}" [(ngModel)]="EMAIL" placeholder="Ingrese su correo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Contraseña:</label>
+                              <input [ngModelOptions]="{standalone: true}" [(ngModel)]="PASSWORD" placeholder="Ingrese su contraseña" type="password" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="reset" class="btn btn-success btn-block" (click) = "onSaveForm()">Ingresar</button>
+                                <button type="button" class="btn btn-danger btn-block" (click) = "irARecuperar()">Recuperar contraseña</button>
+                            </div>
+                        </form> 
+                    </div>      
+                    <br>
+                    <div class="alert alert-light text-center" role="alert" >
+                        ¿Aún no eres miembro de <b>GTSales MarketPlace</b>?<br><a class="nav-link" [routerLink] = "['/registro']"><b>Haz click aquí</b></a> para registrarte.
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

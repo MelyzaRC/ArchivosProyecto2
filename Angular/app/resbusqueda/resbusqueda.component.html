@@ -1,0 +1,32 @@
+<hr>
+<nav class="nav nav-pills flex-column flex-sm-row bg-" >
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/perfil']">Perfil</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" [routerLink] = "['/productos']">Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/nuevo']">Nuevo Producto</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/misproductos']">Mis Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/mensaje']">Mensajes</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/carrito']">Carrito</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/logout']">Salir</a>
+  </nav>
+  <hr>
+  <br>
+
+
+<div class="form-group text-center">
+<h6>Resultado de la busqueda de <b>{{CRITERIO}}</b></h6>
+</div>
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 text-center" *ngFor='let producto of servicio.productos'>
+      <div class="card" style="width: 18rem;" >
+        <img src={{producto[7]}} class="card-img-top" alt="producto" width="100" height="100">
+        <div class="card-body">
+          <h5 class="card-title">{{producto[1]}}</h5>
+          <p class="card-text">{{producto[2]}}</p>
+          <h6><b>Q.{{producto[4]}}</b></h6><br>
+          <button class="btn btn-warning" (click) = "verDetalles(producto[0])">Ver Detalles</button>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>

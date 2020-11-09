@@ -1,0 +1,37 @@
+<hr>
+<nav class="nav nav-pills flex-column flex-sm-row bg-" >
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/perfil']">Perfil</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/productos']">Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/nuevo']">Nuevo Producto</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" [routerLink] = "['/misproductos']">Mis Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/mensaje']">Mensajes</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/carrito']">Carrito</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/logout']">Salir</a>
+  </nav>
+  <hr>
+
+  <div class="container h-100" >
+    <div class="row justify-content-center h-100">
+        <div class="col-sm-10 align-self-center">
+          <div class="form-group text-center">
+            <img src="https://www.pmh.cl/wp-content/uploads/2015/06/packaging.png" class="img-fluid" alt="Responsive image" width="150">
+            <br>
+            <h3><b>Mis Productos</b></h3>
+          </div>
+        </div>
+    </div>
+  </div> 
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 text-center" *ngFor='let producto of servicio.misproductos'>
+      <div class="card" style="width: 18rem;" >
+        <img src={{producto[7]}} class="card-img-top" alt="producto" width="100px" height="100px" id="idfoto">
+        <div class="card-body">
+          <h5 class="card-title">{{producto[1]}}</h5>
+          <p class="card-text">{{producto[2]}}</p>
+          <h6><b>$.{{producto[4]}}</b></h6><br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>

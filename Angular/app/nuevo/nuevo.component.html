@@ -1,0 +1,68 @@
+<hr>
+<nav class="nav nav-pills flex-column flex-sm-row bg-" >
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/perfil']">Perfil</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/productos']">Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" [routerLink] = "['/nuevo']">Nuevo Producto</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/misproductos']">Mis Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/mensaje']">Mensajes</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/carrito']">Carrito</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/logout']">Salir</a>
+  </nav>
+  <hr>
+  <br>
+  <div class="container h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-sm-7 align-self-center">
+            <div class="card shadow">
+                <div class="card-body"> 
+                    <div class="form-group text-center">
+                        <img src="https://images.vexels.com/media/users/3/141185/isolated/preview/b2c7de1951d5d57e9305c96ca875e170-bolsas-de-compra-by-vexels.png" class="img-fluid" alt="Registro de datos" width="150" height="300">
+                        <br>
+                        <br>
+                        <h4><b>Nuevo producto</b></h4>
+                        <br>
+                    </div>
+                    <div class="form-container">
+                      <form>
+                        <!--Solicitando NOMBRE-->
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" placeholder="Ingrese el nombre del producto" class="form-control" id="nombre" [ngModelOptions]="{standalone: true}" [(ngModel)]="NOMBRE">
+                        <br>
+                        <!--Solicitando DESCRIPCION-->
+                        <label for="detalle">Descripcion:</label>
+                        <input type="text" placeholder="Ingrese la Descripcion del producto" class="form-control" id="detalle" [ngModelOptions]="{standalone: true}" [(ngModel)]="DETALLE">
+                        <br>
+                        <!--Solicitando PALABRASCLAVE-->
+                        <label for="etiqueta">Etiquetas:</label>
+                        <input type="text" placeholder="Ingrese etiquetas separadas por coma ej. producto, marca, modelo" class="form-control" id="etiqueta" [ngModelOptions]="{standalone: true}" [(ngModel)]="ETIQUETA">
+                        <br>
+                        <!--Solicitando CATEGORIA-->
+                        <label for="categoria">Categoria:</label>
+                        <select class="form-control form-control-sm" id="categoria"  [ngModelOptions]="{standalone: true}" [(ngModel)]="CATEGORIA">
+                            <option *ngFor='let categoria of servicio.categorias' value={{categoria[0]}}>{{categoria[1]}}</option>
+                        </select>
+                        <br>
+                        <!--Solicitando PRECIO-->
+                        <label for="precio">Precio:</label>
+                        <input type="number" placeholder="Ingrese el precio de su producto" class="form-control" id="foto" [ngModelOptions]="{standalone: true}" [(ngModel)]="PRECIO">
+                        <br>
+                        <!--Solicitando FOTO-->
+                        <label for="foto">Foto del producto:</label>
+                        <image-upload (uploadFinished)="onUploadFinish($event)" id="foto"></image-upload>
+                        <button type="button" class="btn btn-success" (click)="sendImage()">Subir</button>
+                        <br>
+                        <br>
+                        <div class="form-group text-center">
+                            <small id="info" class="form-text text-muted">Al pulsar el boton de PUBLICAR, su producto sera parte de <b>GTSales Marketplace</b>.</small>
+                            <br>
+                            <button type="reset" class="btn btn-success btn-block" id="botonpublicar" (click)="registrarProducto()">Publicar</button>
+                        </div>
+                      </form>
+                    </div>      
+                    <br>                
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+    

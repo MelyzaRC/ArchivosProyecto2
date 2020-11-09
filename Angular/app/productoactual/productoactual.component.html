@@ -1,0 +1,88 @@
+<hr>
+<nav class="nav nav-pills flex-column flex-sm-row" >
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/perfil']">Perfil</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" [routerLink] = "['/productos']">Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/nuevo']">Nuevo Producto</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/misproductos']">Mis Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/mensaje']">Mensajes</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/carrito']">Carrito</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/logout']">Salir</a>
+  </nav>
+  <hr>
+  <br>
+
+
+<div class="container h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-sm-8 align-self-center">
+            <div class="card shadow">
+                <div class="card-body"> 
+                    <div class="form-group text-center">
+                        <img src={{productoActual[7]}} class="img-fluid" alt="Responsive image" width="300" height="300">
+                    </div>
+                    <br>
+                    <div class="form-container">
+                        
+                    </div> 
+                    <div>
+                        <div class="form-group text-center">
+                            <p>
+                                <b>{{productoActual[1]}}</b><br>
+                                {{productoActual[2]}}
+                            </p>
+                            <h1>$.{{productoActual[4]}}</h1>
+                            <br>
+                            <b>Categoria: </b>{{productoActual[9]}}<br>
+                            <div *ngIf="servicio.estadoLike == 1">
+                                <img src="https://www.flaticon.com/svg/static/icons/svg/3515/3515393.svg" class="img-fluid" alt="Responsive image" width="35" height="35">
+                                <br>
+                                <small>Te gusta este producto</small>
+                            </div>
+                            <div *ngIf="servicio.estadoLike == 2">
+                                <img src="https://www.flaticon.com/svg/static/icons/svg/196/196587.svg" class="img-fluid" alt="Responsive image" width="35" height="35">
+                                <br>
+                                <small>No te gusta este producto</small>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info">Enviar Mensaje</button>
+                                <button type="button" class="btn btn-danger" (click)="denunciar()">Denunciar</button>
+                                <button type="button" class="btn btn-warning" (click)="darLike(1)">Me gusta</button>
+                                <button type="button" class="btn btn-dark" (click)="darLike(2)">No me gusta</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <br>Cantidad<br>
+                            <input type="number" name="cantidad" [ngModelOptions]="{standalone: true}" [(ngModel)]="CANTIDAD"><br><br>
+                            <button type="button" class="btn btn-success" (click)="anadirCarrito()">Anadir al carrito</button>
+                        </div>
+                    </div>
+                    <hr>
+                        <img src={{actualAqui[6]}} class="img-fluid" alt="Responsive image" width="20" height="20">
+                        {{servicio.actual[1]}}:
+                        <br>
+                        <br>
+                    <form>
+                    <div class="form-group">
+                        <textarea class="form-control" id="comentario" rows="3" [ngModelOptions]="{standalone: true}" [(ngModel)]="CONTENIDO"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-success" (click)="comentar()">Comentar</button>
+                    </form>
+                    <hr>
+                    <div *ngFor="let comentario of servicio.comentarios">
+                        <img src={{comentario[6]}} class="img-fluid" alt="Responsive image" width="20" height="20">
+                        {{comentario[5]}}:
+                        <br>
+                        <br>
+                        <div class="alert alert-warning" role="alert">
+                            {{comentario[3]}}<br>
+                            <small><b>{{comentario[4]}}</b></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

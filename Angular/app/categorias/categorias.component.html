@@ -1,0 +1,43 @@
+<hr>
+<nav class="nav nav-pills flex-column flex-sm-row bg-" >
+    <a class="flex-sm-fill text-sm-center nav-link active" [routerLink] = "['/categorias']">Categorias</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/denuncias']">Denuncias</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/reportes']">Reportes</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/logout']">Salir</a>
+</nav>
+  <hr>
+<br>
+<br>
+<div class="container h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-sm-6 align-self-center">
+            <div class="card shadow">
+                <div class="card-body"> 
+                    <div class="form-group text-center">
+                        <img src="https://gidemasrl.org/public/fotos_clientes/1964.jpg" class="img-fluid" alt="Responsive image" width="150">
+                        <br>
+                        <h3><b>Categorias</b></h3>
+                    </div>
+                    <br>
+                    Insertar nueva categoria:<br>
+                    <form>
+                        <input [ngModelOptions]="{standalone: true}" [(ngModel)]="CATEGORIA" placeholder="Nueva categoria" type="text" class="form-control" id="nueva"><br> 
+                        <button type="reset" class="btn btn-success btn-block" (click)="insertarCategoria()">Crear categoria</button>   
+                    </form>
+                    <br><hr><br>
+                    <ul class="list-group text-center">
+                        <li class="list-group-item" *ngFor="let categoria of servicio.categorias">{{categoria[1]}}</li>
+                    </ul> 
+                    <br>
+                    <hr>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+
+
+
