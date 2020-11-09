@@ -46,18 +46,23 @@
                         </div>
                         <div class="form-group text-center">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-info">Enviar Mensaje</button>
-                                <button type="button" class="btn btn-danger" (click)="denunciar()">Denunciar</button>
-                                <button type="button" class="btn btn-warning" (click)="darLike(1)">Me gusta</button>
+                                <button type="button" class="btn btn-info">Enviar Mensaje</button>&nbsp;&nbsp;
+                                <button type="button" class="btn btn-danger" (click)="denunciar()">Denunciar</button>&nbsp;&nbsp;
+                                <button type="button" class="btn btn-warning" (click)="darLike(1)">Me gusta</button>&nbsp;&nbsp;
                                 <button type="button" class="btn btn-dark" (click)="darLike(2)">No me gusta</button>
                             </div>
                         </div>
 
                         <div class="form-group text-center">
                             <br>Cantidad<br>
+                            <form>
                             <input type="number" name="cantidad" [ngModelOptions]="{standalone: true}" [(ngModel)]="CANTIDAD"><br><br>
-                            <button type="button" class="btn btn-success" (click)="anadirCarrito()">Anadir al carrito</button>
+                            <button type="reset" class="btn btn-success" (click)="anadirCarrito()">Anadir al carrito</button>
+                            </form>
                         </div>
+                        <small>Palabras clave:</small>
+                        <br>
+                        <button class="badge badge-primary" *ngFor="let etiqueta of productoActual[10].split(',')">{{etiqueta}}</button>
                     </div>
                     <hr>
                         <img src={{actualAqui[6]}} class="img-fluid" alt="Responsive image" width="20" height="20">

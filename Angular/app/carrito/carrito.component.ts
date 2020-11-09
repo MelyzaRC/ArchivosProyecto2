@@ -37,5 +37,13 @@ export class CarritoComponent implements OnInit {
       this.servicio.confirmarCompra(this.usuarioActual[0]);
     }
   }
+  
+  vaciarCarrito(){
+    if(this.servicio.carrito.length == 0){
+      this.servicio.notificacionInfo("El carrito se encuentra vacio", "Info")
+    }else{
+      this.servicio.vaciarCarrito();
+    }
+  }
 
 }

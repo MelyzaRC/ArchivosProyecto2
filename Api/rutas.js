@@ -159,6 +159,43 @@ router.get('/busquedaproductos', function(request, response){
     response.end;
 });
 
+/*===================BUSQUEDA DE PRODUCTOS POR CATEGORIA======================*/
+router.get('/busquedacategorias', function(request, response){
+    console.log("Entrando A BUSCAR PRODUCTOS por categoria");
+    sql = ` SELECT * 
+            FROM producto 
+            WHERE categoria = :categoria AND propietario != :usuario AND estado = 1`;
+    var categoria = request.query.categoria;
+    var usuario = parseInt(request.query.usuario);
+    dao.open(sql, [categoria, usuario], false, response);
+    response.end;
+});
+
+/*===================BUSQUEDA DE PRODUCTOS POR MAYOR PRECIO======================*/
+router.get('/busquedamayor', function(request, response){
+    console.log("Entrando A BUSCAR PRODUCTOS por mayor precio");
+    sql = ` SELECT * 
+            FROM producto 
+            WHERE propietario != :usuario AND estado = 1
+            ORDER BY precio DESC`;
+    var usuario = parseInt(request.query.usuario);
+    dao.open(sql, [usuario], false, response);
+    response.end;
+});
+
+/*===================BUSQUEDA DE PRODUCTOS POR MENOR PRECIO======================*/
+router.get('/busquedamenor', function(request, response){
+    console.log("Entrando A BUSCAR PRODUCTOS por menor precio");
+    sql = ` SELECT * 
+            FROM producto 
+            WHERE propietario != :usuario AND estado = 1
+            ORDER BY precio ASC`;
+    var usuario = parseInt(request.query.usuario);
+    dao.open(sql, [usuario], false, response);
+    response.end;
+});
+
+
 /*===========================NUEVO PRODUCTO=============================*/
 router.get('/nuevoproducto', function(request, response){
     console.log("Entrando a nuevo producto");
@@ -178,7 +215,7 @@ router.get('/nuevoproducto', function(request, response){
 /*==========================VER PRODUCTO ACTUAL============================*/
 router.get('/productoactual', function(request, response){
     console.log("Entrando a ver un solo producto");
-    sql = ` SELECT p.producto, p.nombre, p.detalle, p.palabras_clave, p.precio, p.categoria, p.propietario, p.foto, p.estado, c.nombre
+    sql = ` SELECT p.producto, p.nombre, p.detalle, p.palabras_clave, p.precio, p.categoria, p.propietario, p.foto, p.estado, c.nombre, p.palabras_clave
             FROM producto p, categoria c
             WHERE producto = :producto AND c.categoria = p.categoria`;
     var producto = request.query.producto;
@@ -581,6 +618,18 @@ router.get('/vercarrito', function(request, response){
     response.end;
    
 });
+
+/*===============================VACIAR CARRITO==================================*/
+router.get('/vaciarcarrito', function(request, response){
+    console.log("Entrando a vaciar carrito");
+    sql = ` UPDATE carrito
+            SET estado = 0
+            WHERE usuario = :usuario`; 
+    var usuario = request.query.usuario;
+    dao.open(sql, [usuario], true, response);
+    response.end;
+});
+
 
 /*===============================QUITAR CARRITO==================================*/
 router.get('/quitarCarrito', function(request, response){

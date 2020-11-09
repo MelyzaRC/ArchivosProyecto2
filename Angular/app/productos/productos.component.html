@@ -11,25 +11,32 @@
   <hr>
   <br>
 
-  <div clas="form-group text-center">
+  <div clas="form-group text-center"  >
     <div class="row">
       <div class="col-xs-12 col-sm-2 text-center">
-        <input class="form-control mr-sm-2" [ngModelOptions]="{standalone: true}" [(ngModel)]="BUSQUEDA" type="search" placeholder="Ingresar criterio..." aria-label="Search">
+        <input class="form-control mr-sm-2" [ngModelOptions]="{standalone: true}" [(ngModel)]="BUSQUEDA" type="search" placeholder="Criterio" aria-label="Search">
               <button class="btn btn-success my-2 my-sm-0" type="button" (click)="buscarProductos()">Buscar</button>
       </div>
       <div class="col-xs-12 col-sm-2 text-center">
-        <input class="form-control mr-sm-2" [ngModelOptions]="{standalone: true}" [(ngModel)]="BUSQUEDA" type="search" placeholder="Ingresar criterio..." aria-label="Search">
-              <button class="btn btn-success my-2 my-sm-0" type="button" (click)="buscarProductos()">Buscar</button>
+                        <select class="form-control form-control-sm" id="categoria"  [ngModelOptions]="{standalone: true}" [(ngModel)]="BUSQUEDA2">
+                            <option *ngFor='let categoria of servicio.categorias' value={{categoria[0]}}>{{categoria[1]}}</option>
+                        </select>
+                        <button class="btn btn-success my-2 my-sm-0" type="button" (click)="buscarProductosCategoria()">Buscar</button>
       </div>
       <div class="col-xs-12 col-sm-2 text-center">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/41MSqLLB1kL.png" class="img-fluid" alt="Responsive image" width="35">
+        <img src="https://images.vexels.com/media/users/3/145323/isolated/preview/3c269db0a02767f825b24e9a8e262de0-arriba-flecha-ilustracion-by-vexels.png" class="img-fluid" alt="Responsive image" width="35">
         &nbsp;
-        <button class="btn btn-success my-2 my-sm-0" type="button" (click)="buscarProductos()">Buscar</button>
+        <button class="btn btn-success my-2 my-sm-0" type="button" (click)="buscarProductosMayor()">+ Precio</button>
       </div>
       <div class="col-xs-12 col-sm-2 text-center">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/41MSqLLB1kL.png" class="img-fluid" alt="Responsive image" width="35">
+        <img src="data:image/png;base64,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" class="img-fluid" alt="Responsive image" width="35">
         &nbsp;
-        <button class="btn btn-success my-2 my-sm-0" type="button" (click)="buscarProductos()">Buscar</button>
+        <button class="btn btn-success my-2 my-sm-0" type="button" (click) = "buscarProductosMenor()">- Precio</button>
+      </div>
+      <div class="col-xs-12 col-sm-2 text-center">
+        <img src="https://www.adoptakollel.com/images/todo.png" class="img-fluid" alt="Responsive image" width="35">
+        &nbsp;
+        <button class="btn btn-success my-2 my-sm-0" type="button" (click) = "verTodos()">Todos</button>
       </div>
     </div>
 
@@ -40,7 +47,52 @@
     
 
 <br>
-  <div class="row">
+  <div class="row" *ngIf='PRESENTAR == 1'>
+    <div class="col-xs-12 col-sm-3 text-center" *ngFor='let producto of servicio.productos'>
+      <div class="card" style="width: 18rem;" >
+        <img src={{producto[7]}} class="card-img-top" alt="producto" width="100px" height="100px" id="idfoto">
+        <div class="card-body">
+          <h5 class="card-title">{{producto[1]}}</h5>
+          <p class="card-text">{{producto[2]}}</p>
+          <h6><b>Q.{{producto[4]}}</b></h6><br>
+          <button class="btn btn-warning" (click) = "verDetalles(producto[0])">Ver Detalles</button>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf='PRESENTAR == 2'>
+    <div class="col-xs-12 col-sm-3 text-center" *ngFor='let producto of servicio.productosCategoria'>
+      <div class="card" style="width: 18rem;" >
+        <img src={{producto[7]}} class="card-img-top" alt="producto" width="100px" height="100px" id="idfoto">
+        <div class="card-body">
+          <h5 class="card-title">{{producto[1]}}</h5>
+          <p class="card-text">{{producto[2]}}</p>
+          <h6><b>Q.{{producto[4]}}</b></h6><br>
+          <button class="btn btn-warning" (click) = "verDetalles(producto[0])">Ver Detalles</button>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf='PRESENTAR == 3'>
+    <div class="col-xs-12 col-sm-3 text-center" *ngFor='let producto of servicio.productos'>
+      <div class="card" style="width: 18rem;" >
+        <img src={{producto[7]}} class="card-img-top" alt="producto" width="100px" height="100px" id="idfoto">
+        <div class="card-body">
+          <h5 class="card-title">{{producto[1]}}</h5>
+          <p class="card-text">{{producto[2]}}</p>
+          <h6><b>Q.{{producto[4]}}</b></h6><br>
+          <button class="btn btn-warning" (click) = "verDetalles(producto[0])">Ver Detalles</button>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf='PRESENTAR == 4'>
     <div class="col-xs-12 col-sm-3 text-center" *ngFor='let producto of servicio.productos'>
       <div class="card" style="width: 18rem;" >
         <img src={{producto[7]}} class="card-img-top" alt="producto" width="100px" height="100px" id="idfoto">

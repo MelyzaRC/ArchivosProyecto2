@@ -89,6 +89,43 @@ export class ServiciologinService {
     });
   }
 
+  public traerProductosmayor(){
+    this.actual = this.getCurrentUsert();
+    this.http.get(`${this.API_URI}busquedamayor?&usuario=${this.actual[0]}`)
+    .subscribe((resp: any[]) => {
+      this.productos = resp;
+      console.log(this.productos)
+      for(var i = 0; i < this.productos.length; i++){
+        this.productos[i][7] = "http://localhost:3010/"+this.productos[i][7];
+      }
+    });
+  }
+
+  public traerProductosmenor(){
+    this.actual = this.getCurrentUsert();
+    this.http.get(`${this.API_URI}busquedamenor?&usuario=${this.actual[0]}`)
+    .subscribe((resp: any[]) => {
+      this.productos = resp;
+      console.log(this.productos)
+      for(var i = 0; i < this.productos.length; i++){
+        this.productos[i][7] = "http://localhost:3010/"+this.productos[i][7];
+      }
+    });
+  }
+
+  public productosCategoria: any[];
+  public traerProductosCategoria(categoria: any){
+    this.actual = this.getCurrentUsert();
+    this.http.get(`${this.API_URI}busquedacategorias?&usuario=${this.actual[0]}&categoria=${categoria}`)
+    .subscribe((resp: any[]) => {
+      this.productosCategoria = resp;
+      console.log(this.productosCategoria)
+      for(var i = 0; i < this.productosCategoria.length; i++){
+        this.productosCategoria[i][7] = "http://localhost:3010/"+this.productosCategoria[i][7];
+      }
+    });
+  }
+
   public misproductos: any[];
   public traerMisProductos(usuario: any){
     this.http.get(`${this.API_URI}misproductos?&usuario=${usuario}`)
@@ -194,7 +231,7 @@ export class ServiciologinService {
       for(var i = 0; i < this.productos.length; i++){
         this.productos[i][7] = "http://localhost:3010/"+this.productos[i][7];
       }
-      this.router.navigateByUrl('resbusqueda');
+      //this.router.navigateByUrl('resbusqueda');
     });
   }
   
@@ -705,6 +742,21 @@ export class ServiciologinService {
     this.guardarBitacora(`Visualizacion de carrito`, this.actual[2]);
   }
 
+  public vaciarCarrito(){
+    this.actual = this.getCurrentUsert();
+    this.http.get(`${this.API_URI}vaciarcarrito?&usuario=${this.actual[0]}`)
+    .subscribe((resp: any) => {
+      console.log(resp);
+      if(resp == 0){
+        this.notificacionError("Error vaciando el carrito", "Error");
+      }else{
+        this.notificacionSuccess("Carrito vaciado", "Ok");
+        location.reload();
+      }
+    });
+    this.actual = this.getCurrentUsert();
+    this.guardarBitacora(`Vaciar de carrito`, this.actual[2]);
+  }
   public quitarCarrito(carrito: any){
     this.http.get(`${this.API_URI}quitarcarrito?&carrito=${carrito}`)
     .subscribe((resp: any) => {
