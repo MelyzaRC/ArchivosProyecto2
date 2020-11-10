@@ -22,8 +22,7 @@ export class CarritoComponent implements OnInit {
     }
     
     this.servicio.verCarrito(this.usuarioActual[0]);
-    
-    
+  
   }
   
 

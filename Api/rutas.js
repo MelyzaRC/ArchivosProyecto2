@@ -68,18 +68,6 @@ router.get('/login', function(request, response){
     
 });
 
-/*==================================CONFIRMAR===================================*/
-router.get('/confirmarcuenta', function(request, response){
-    console.log("Entrando a confirmarcuenta");
-    sql = ` UPDATE usuario
-            SET estado = 1
-            WHERE email = :email`;
-    var email = request.query.email;
-    dao.open(sql, [email], true, response);
-    response.end;
-    
-});
-
 /*================================REGISTRO===================================*/
 router.get('/registro', function(request, response){
     console.log("Entrando a registro");
@@ -102,6 +90,18 @@ router.get('/registro', function(request, response){
     response.end;
 });
 
+/*==================================CONFIRMAR===================================*/
+router.get('/confirmarcuenta', function(request, response){
+    console.log("Entrando a confirmarcuenta");
+    sql = ` UPDATE usuario
+            SET estado = 1
+            WHERE email = :email`;
+    var email = request.query.email;
+    dao.open(sql, [email], true, response);
+    response.end;
+    
+});
+
 /*=============================VER TODOS LOS PRODUCTOS===============================*/
 router.get('/productos', function(request, response){
     console.log("Entrando a ver productos");
@@ -113,6 +113,7 @@ router.get('/productos', function(request, response){
     dao.open(sql, [usuario], false, response);
     response.end;
 });
+
 /*=============================VER TODOS MIS PRODUCTOS===============================*/
 router.get('/misproductos', function(request, response){
     console.log("Entrando a ver productos mios");
@@ -124,6 +125,7 @@ router.get('/misproductos', function(request, response){
     dao.open(sql, [usuario], false, response);
     response.end;
 });
+
 /*=============================VER CATEGORIAS===============================*/
 router.get('/categorias', function(request, response){
     console.log("Entrando a ver categorias");
@@ -194,7 +196,6 @@ router.get('/busquedamenor', function(request, response){
     dao.open(sql, [usuario], false, response);
     response.end;
 });
-
 
 /*===========================NUEVO PRODUCTO=============================*/
 router.get('/nuevoproducto', function(request, response){
@@ -412,6 +413,7 @@ router.get('/nuevaCategoria', function(request, response){
     dao.open(sql, [categoria, nombre], true, response);
     response.end;
 });
+
 /*==============================INSERTAR BITACORA=================================*/
 router.get('/insertarbitacora', function(request, response){
     sql = ` INSERT INTO bitacora
@@ -423,6 +425,7 @@ router.get('/insertarbitacora', function(request, response){
     dao.open(sql, [accion, fecha, correo], true, response);
     response.end;
 });
+
 /*=================================VER BITACORA===================================*/
 router.get('/verbitacora', function(request, response){
     console.log("Entrando a ver bitacora");
@@ -440,7 +443,8 @@ router.get('/verbitacoraotro', function(request, response){
     dao.open(sql, [], false, response);
     response.end;
 });
-/*=================================10+ Vendidos===================================*/
+
+/*=================================10+ VENDIDOS===================================*/
 router.get('/diezmasvendidos', function(request, response){
     console.log("Entrando a ver diez mas vendidos");
     sql = ` 
@@ -456,7 +460,8 @@ router.get('/diezmasvendidos', function(request, response){
     dao.open(sql, [], false, response);
     response.end;
 });
-/*=================================10+ Vendidos===================================*/
+
+/*=================================10+ ME GUSTA===================================*/
 router.get('/diezmasmegusta', function(request, response){
     console.log("Entrando a ver diez mas megusta");
     sql = ` 
@@ -473,7 +478,8 @@ router.get('/diezmasmegusta', function(request, response){
     dao.open(sql, [], false, response);
     response.end;
 });
-/*=================================10+ Vendidos===================================*/
+
+/*=================================10+ NO ME GUSTA================================*/
 router.get('/diezmasnomegusta', function(request, response){
     console.log("Entrando a ver diez mas no megusta");
     sql = ` 
@@ -490,6 +496,7 @@ router.get('/diezmasnomegusta', function(request, response){
     dao.open(sql, [], false, response);
     response.end;
 });
+
 /*=================================10+ Vendidos===================================*/
 /*sql = ` SELECT *
             FROM
@@ -629,7 +636,6 @@ router.get('/vaciarcarrito', function(request, response){
     dao.open(sql, [usuario], true, response);
     response.end;
 });
-
 
 /*===============================QUITAR CARRITO==================================*/
 router.get('/quitarCarrito', function(request, response){

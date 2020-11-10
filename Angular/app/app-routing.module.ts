@@ -15,7 +15,6 @@ import { ReportesComponent } from './reportes/reportes.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { ResbusquedaComponent } from './resbusqueda/resbusqueda.component';
 import { ProductoactualComponent } from './productoactual/productoactual.component';
-import { BitacoraComponent } from './bitacora/bitacora.component';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { DenunciarproductoComponent } from './denunciarproducto/denunciarproducto.component';
 import { ConfirmarcuentaComponent } from './confirmarcuenta/confirmarcuenta.component';
@@ -40,13 +39,12 @@ const routes: Routes = [
   {path:'categorias', component: CategoriasComponent},
   {path:'resbusqueda', component: ResbusquedaComponent},
   {path:'productoactual', component: ProductoactualComponent},
-  {path:'bitacora', component: BitacoraComponent},
   {path:'denunciarproducto', component: DenunciarproductoComponent},
   {path:'confirmarcuenta/:correo', component: ConfirmarcuentaComponent},
   {path:'carrito', component: CarritoComponent},
   {path:'recuperarnueva/:correo', component: RecuperarnuevaComponent},
   {path:'misproductos', component: MisproductosComponent},
-  {path:'**', component: LoginComponent}
+  {path:'**', component: TarjetaComponent}
 ];
 
 @NgModule({

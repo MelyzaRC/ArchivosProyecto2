@@ -19,7 +19,6 @@ import { ReportesComponent } from './reportes/reportes.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { ResbusquedaComponent } from './resbusqueda/resbusqueda.component';
 import { ProductoactualComponent } from './productoactual/productoactual.component';
-import { BitacoraComponent } from './bitacora/bitacora.component';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { DenunciarproductoComponent } from './denunciarproducto/denunciarproducto.component';
 import { ConfirmarcuentaComponent } from './confirmarcuenta/confirmarcuenta.component';
@@ -49,7 +48,6 @@ import { MisproductosComponent } from './misproductos/misproductos.component';
     CategoriasComponent,
     ResbusquedaComponent,
     ProductoactualComponent,
-    BitacoraComponent,
     DenunciarproductoComponent,
     ConfirmarcuentaComponent,
     CarritoComponent,
