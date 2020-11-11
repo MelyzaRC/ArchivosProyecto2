@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { RecuperarnuevaComponent } from './recuperarnueva/recuperarnueva.component';
 import { MisproductosComponent } from './misproductos/misproductos.component';
+import { MensajenuevoComponent } from './mensajenuevo/mensajenuevo.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MisproductosComponent } from './misproductos/misproductos.component';
     ConfirmarcuentaComponent,
     CarritoComponent,
     RecuperarnuevaComponent,
-    MisproductosComponent
+    MisproductosComponent,
+    MensajenuevoComponent
   ],
   imports: [
     BrowserModule,

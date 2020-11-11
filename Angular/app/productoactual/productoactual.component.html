@@ -44,9 +44,9 @@
                                 <small>No te gusta este producto</small>
                             </div>
                         </div>
-                        <div class="form-group text-center">
+                        <div class="form-group text-center"> 
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-info">Enviar Mensaje</button>&nbsp;&nbsp;
+                                <button type="button" class="btn btn-info" (click)="enviarMensaje()">Enviar Mensaje</button>&nbsp;&nbsp;
                                 <button type="button" class="btn btn-danger" (click)="denunciar()">Denunciar</button>&nbsp;&nbsp;
                                 <button type="button" class="btn btn-warning" (click)="darLike(1)">Me gusta</button>&nbsp;&nbsp;
                                 <button type="button" class="btn btn-dark" (click)="darLike(2)">No me gusta</button>
@@ -62,7 +62,7 @@
                         </div>
                         <small>Palabras clave:</small>
                         <br>
-                        <button class="badge badge-primary" *ngFor="let etiqueta of productoActual[10].split(',')">{{etiqueta}}</button>
+                        <button class="badge badge-primary" *ngFor="let etiqueta of productoActual[10].split(',')">{{etiqueta}}&nbsp;</button>
                     </div>
                     <hr>
                         <img src={{actualAqui[6]}} class="img-fluid" alt="Responsive image" width="20" height="20">

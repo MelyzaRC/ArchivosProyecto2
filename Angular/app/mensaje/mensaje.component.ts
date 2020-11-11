@@ -15,6 +15,11 @@ export class MensajeComponent implements OnInit {
     if(this.servicio.getCurrentUsert() == false){
       this.router.navigateByUrl('error');
     }
+    this.servicio.obtenerMensajesListado();
+  }
+
+  verMensaje(remitente: any){
+   this.servicio.obtenerPropietario(remitente);
   }
 
 }

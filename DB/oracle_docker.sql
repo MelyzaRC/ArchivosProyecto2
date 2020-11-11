@@ -205,8 +205,6 @@ BEGIN
 END;
 
 
-
-
 /*------------------------------------------------------------------------------
                         MENSAJE
 ------------------------------------------------------------------------------*/
@@ -399,8 +397,8 @@ insert into categoria(categoria, nombre) values (0, 'Juguetes');/*14*/
 /*Productos de Andres Miranda No. 5 mlzdrg795@gmail.com*/
 insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto) values (0,'Doritos','Doritos Rojos bolsa de 250gramos','Doritos,Rojo',10.50,5,5,1,'alimentacion1.jpg');
 insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto)  values (0,'Gaseosa','Gaseosa Cocacola 450ml original','Coca,cola,cocacola,gaseosa',7.0,5,5,1, 'alimentacion2.jpg');
-insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto)  values (0,'Doritos','Doritos Rojos bolsa de 250gramos','Doritos,Rojo',10.50,5,5,1, 'alimentacion3.jpg');
-insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto)  values (0,'Doritos','Doritos Rojos bolsa de 250gramos','Doritos,Rojo',10.50,5,5,1, 'alimentacion4.jpg');
+insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto)  values (0,'Caramelos','Caramelos LifeSavers de sabores variados','Dulces,caramelos',8.95,5,5,1, 'alimentacion3.jpg');
+insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto)  values (0,'Donas','Caja de donas de diferentes sabores de glaseado','Dulces,donas',40.50,5,5,1, 'alimentacion4.jpg');
 
 insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto) values (0,'Llantas','Llantas para automovil color negro','Llantas,negro',1000,6,5,1,'autos1.jpg');
 insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto) values (0,'Aromatizante','Aromatizante para automovil diferentes fragancias','Aromatizante,fragancia',25.50,6,5,1,'autos2.jpg');
@@ -464,5 +462,3 @@ insert into producto(producto, nombre, detalle, palabras_clave, precio, categori
 insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto) values (0,'Zapatillas','Zapatos casuales para dama varios colores y tallas disponibles','Zapatos,Calzado,Casual',130,2,7,1,'zapatos2.jpg');
 insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto) values (0,'Zapatos de tacon','Zapatos de tacon color rosa palido talla 35 tacon bajo','Tacones,Dama',250,2,7,1,'zapatos3.jpg');
 insert into producto(producto, nombre, detalle, palabras_clave, precio, categoria, propietario, estado, foto) values (0,'Zapatos deportivos','Zapatos deportivos con diseno negro y rojo comodos y resistentes','Zapatos,Deporte,Tenis',325,2,7,1,'zapatos4.jpg');
-
-commit;

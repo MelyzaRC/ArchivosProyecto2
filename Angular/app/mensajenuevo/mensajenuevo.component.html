@@ -1,0 +1,53 @@
+
+<hr>
+<nav class="nav nav-pills flex-column flex-sm-row bg-" >
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/perfil']">Perfil</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/productos']">Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/nuevo']">Nuevo Producto</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/misproductos']">Mis Productos</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" [routerLink] = "['/mensaje']">Mensajes</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/carrito']">Carrito</a>
+    <a class="flex-sm-fill text-sm-center nav-link" [routerLink] = "['/logout']">Salir</a>
+  </nav>
+  <hr>
+  <br>
+<div class="container h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-sm-8 align-self-center">
+            <div class="card shadow">
+                <div class="card-body"> 
+                    <div class="form-group text-sm-center">
+                        <small>Conversacion con:</small>   
+                        <br>
+                        <h1>
+                            {{propietarioAqui[1]}}
+                        </h1>
+                        <hr width="75%">
+                    </div>     
+                    <div class="form-group text-center" *ngFor="let mensaje of servicio.conversacion">
+                        <div class="text-right" *ngIf="mensaje[1] == servicio.actual[0]">
+                            <b>Tu&nbsp;</b>
+                            <div class="alert alert-warning text-right" role="alert">
+                                {{mensaje[3]}}
+                            </div>
+                        </div>
+                        <div class="text-left" *ngIf="mensaje[1] == servicio.propietario[0]">
+                            <b>{{servicio.propietario[1]}}</b>
+                          <div class="alert alert-success" role="alert">
+                            {{mensaje[3]}}
+                          </div>
+                        </div>
+                    </div>  
+                    <hr width="100%">
+                    <div class="form-group">
+                        <form>
+                            <textarea placeholder="Escribe algo..." class="form-control" id="comentario" rows="5" [ngModelOptions]="{standalone: true}" [(ngModel)]="CONTENIDO"></textarea>
+                            <br>
+                            <button type="reset" class="btn btn-primary" (click) = "enviar()">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

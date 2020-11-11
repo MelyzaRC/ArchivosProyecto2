@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Router } from '@angular/router';
+import { convertToParamMap, Router } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { ToastrService } from 'ngx-toastr';
 
@@ -992,6 +992,96 @@ export class ServiciologinService {
     });
   }
 
+  refrescarUsuario(){
+    this.actual = this.getCurrentUsert();
+    this.http.get(`${this.API_URI}refrescarusuario?&usuario=${this.actual[0]}`)
+    .subscribe((resp: any[]) => {
+      if(resp.length == 0){
+        this.notificacionError("Error viendo info de usuario", "Error");
+      }else{
+        this.actual = resp[0];
+        this.setUser(this.actual);
+      }
+    });
+  }
+
+  public propietario : any;
+  obtenerPropietario(usuario: any){
+    this.http.get(`${this.API_URI}obtenerpropietario?&usuario=${usuario}`)
+    .subscribe((resp: any[]) => {
+      if(resp.length == 0){
+        this.notificacionError("Error viendo info de usuario", "Error");
+      }else{
+        this.propietario = resp[0];
+        console.log(this.propietario);
+        this.setPropietario(this.propietario);
+        this.obtenerConversacion();
+      }
+    });
+  }
+
+  public conversacion : any;
+  obtenerConversacion(){
+    this.actual = this.getCurrentUsert();
+    this.propietario = this.getCurrentPropietario();
+    console.log(this.actual);
+    console.log(this.propietario);
+    this.http.get(`${this.API_URI}obtenerconversacion?&emisor=${this.actual[0]}&receptor=${this.propietario[0]}`)
+    .subscribe((resp: any[]) => {
+      this.conversacion = resp;
+        console.log(this.conversacion);
+        this.router.navigateByUrl('mensajenuevo');
+    });
+  }
+
+
+  enviarNuevoMensaje(contenido: any){
+    this.actual = this.getCurrentUsert();
+    this.propietario = this.getCurrentPropietario();
+    const date1 = new Date();
+    const fechaEnviar = date1.getDate() + "-" + date1.getMonth() + "-" + date1.getFullYear();
+    this.http.get(`${this.API_URI}nuevomensaje?&emisor=${this.actual[0]}&receptor=${this.propietario[0]}&contenido=${contenido}&fecha=${fechaEnviar}`)
+    .subscribe((resp: any) => {
+      location.reload();
+    });
+  }
+
+  public bandeja: any;
+  obtenerMensajesListado(){
+    this.actual = this.getCurrentUsert();
+    this.http.get(`${this.API_URI}listadomensajes?&usuario=${this.actual[0]}`)
+    .subscribe((resp: any[]) => {
+      this.bandeja = resp;
+      if(resp.length > 0){
+        for(var i = 0; i < this.bandeja.length; i++){
+          this.bandeja[i][2] = "http://localhost:3010/" + this.bandeja[i][2];
+        }
+      }
+      console.log(this.bandeja);
+    });
+  }
+
+  public setPropietario(propietario: any){
+    let usr_string = JSON.stringify(propietario);
+    localStorage.setItem('propietarioactual', usr_string);
+  }
+
+  public getCurrentPropietario(){
+    let prd_string = localStorage.getItem('propietarioactual');
+    if (!isNullOrUndefined(prd_string)){
+      let prd = JSON.parse(prd_string);
+      return prd;
+    }
+    return false;
+  }
+
+  public removePropietario(){
+    localStorage.removeItem('propietarioactual');
+  }
+
+
+
+
   /*TOASTS NOTIFICACIONES*/
   notificacionError(contenido: any, titulo: any){
     this.toast.error(contenido, titulo, 
@@ -1036,6 +1126,5 @@ export class ServiciologinService {
           positionClass: 'toast-top-center',
         });
   }
-  
   /*=====================================================================*/
 }

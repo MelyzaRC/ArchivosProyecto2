@@ -48,7 +48,7 @@ export class ProductoactualComponent implements OnInit {
   }
 
   enviarMensaje(){
-
+    this.servicio.obtenerPropietario(this.productoActual[6])
   }
 
   anadirCarrito(){

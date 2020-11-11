@@ -51,9 +51,11 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     if(this.servicio.getCurrentUsert() == false){
       this.router.navigateByUrl('error');
     }
+    this.servicio.refrescarUsuario();
     console.log("Entrando a perfil");
     this.servicio.traerPaises();
     let usr_string = localStorage.getItem('usuarioactual');

@@ -21,6 +21,7 @@ import { ConfirmarcuentaComponent } from './confirmarcuenta/confirmarcuenta.comp
 import { CarritoComponent } from './carrito/carrito.component';
 import { RecuperarnuevaComponent } from './recuperarnueva/recuperarnueva.component';
 import { MisproductosComponent } from './misproductos/misproductos.component';
+import { MensajenuevoComponent } from './mensajenuevo/mensajenuevo.component';
 
 const routes: Routes = [
   
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path:'carrito', component: CarritoComponent},
   {path:'recuperarnueva/:correo', component: RecuperarnuevaComponent},
   {path:'misproductos', component: MisproductosComponent},
+  {path:'mensajenuevo', component: MensajenuevoComponent},
   {path:'**', component: TarjetaComponent}
 ];
 

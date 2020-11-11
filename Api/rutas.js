@@ -795,7 +795,82 @@ router.get('/actualizarcreditosvendedor', function(request, response){
 
 /*==========================================================================*/
 
+router.get('/refrescarusuario', function(request, response){
+    console.log("Entrando a refrescar usuario");
+    sql = ` SELECT *
+            FROM usuario
+            WHERE usuario = :usuario`;
+    var usuario = request.query.usuario;
+    dao.open(sql, [usuario], false, response);
+    response.end;
+});
 
+
+router.get('/obtenerpropietario', function(request, response){
+    console.log("Entrando a obtner propietaio");
+    sql = ` SELECT * 
+            FROM usuario
+            WHERE usuario = :usuario`;
+    var usuario = request.query.usuario;
+    dao.open(sql, [usuario], false, response);
+    response.end;
+});
+
+router.get('/obtenerconversacion', function(request, response){
+    console.log("Entrando a obtner conversacion");
+    sql = ` SELECT * 
+            FROM (
+                (
+                    SELECT *
+                    FROM mensaje 
+                    WHERE emisor = :emisor AND receptor = :receptor
+                )
+                UNION ALL
+                (
+                    SELECT *
+                    FROM mensaje 
+                    WHERE emisor = :receptor AND receptor = :emisor
+                )
+
+            )
+            ORDER BY mensaje ASC`;
+    var emisor = request.query.emisor;
+    var receptor = request.query.receptor;
+    dao.open(sql, [emisor, receptor], false, response);
+    response.end;
+});
+
+router.get('/nuevomensaje', function(request, response){
+    console.log("Entrando a obtner nuevo mensaje");
+    sql = ` INSERT INTO mensaje
+            (mensaje, emisor, receptor, contenido, fecha)
+            VALUES
+            (0, :emisor, :receptor, :contenido, TO_DATE(:fecha, 'DD-MM-YYYY'))`;
+    var emisor = request.query.emisor;
+    var receptor = request.query.receptor;
+    var contenido = request.query.contenido;
+    var fecha = request.query.fecha;
+    dao.open(sql, [emisor, receptor, contenido, fecha], true, response);
+    response.end;
+});
+
+router.get('/listadomensajes', function(request, response){
+    console.log("Entrando a listadomensajes");
+    sql = ` (
+                select distinct u.usuario, u.nombre, u.foto, u.email
+                from usuario u, mensaje m
+                where u.usuario = m.emisor and m.receptor = :usuario)
+                union
+            (
+                select distinct  u.usuario, u.nombre, u.foto, u.email
+                from usuario u, mensaje m
+                where u.usuario = m.receptor and m.emisor = :usuario
+            )
+        `;
+    var usuario = request.query.usuario;
+    dao.open(sql, [usuario], false, response);
+    response.end;
+});
 
 app.use(router);
 app.listen(3000, function(){
